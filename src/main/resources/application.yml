@@ -30,7 +30,3 @@ spring:
       bootstrap-servers: prod:9092
       key-serializer: org.apache.kafka.common.serialization.IntegerSerializer
       value-serializer: org.apache.kafka.common.serialization.StringSerializer
----
-topic:
-  kafka:
-    default: bookstore-events
