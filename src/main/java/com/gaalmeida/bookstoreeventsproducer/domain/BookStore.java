@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Data
 @Builder
-public class Book {
+public class BookStore {
 
     private Integer id;
     private String bookAuthor;
