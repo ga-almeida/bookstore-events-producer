@@ -2,10 +2,8 @@ package com.gaalmeida.bookstoreeventsproducer.controller;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.gaalmeida.bookstoreeventsproducer.builder.BookStoreBuilder;
-import com.gaalmeida.bookstoreeventsproducer.domain.BookStoreEvent;
-import com.gaalmeida.bookstoreeventsproducer.domain.BookStoreEventType;
 import com.gaalmeida.bookstoreeventsproducer.resource.BookStoreResource;
-import com.gaalmeida.bookstoreeventsproducer.service.BookStoreService;
+import com.gaalmeida.bookstoreeventsproducer.service.contract.BookStoreService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -14,13 +12,12 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.Valid;
-import java.util.concurrent.ExecutionException;
 
 @RestController
 public class BookStoreController {
 
-    private BookStoreService bookStoreService;
-    private BookStoreBuilder bookStoreBuilder;
+    private final BookStoreService bookStoreService;
+    private final BookStoreBuilder bookStoreBuilder;
 
     public BookStoreController(BookStoreService bookStoreService, BookStoreBuilder bookStoreBuilder) {
         this.bookStoreService = bookStoreService;
@@ -39,15 +36,11 @@ public class BookStoreController {
                 );
     }
 
-    @PutMapping("/v1/bookstore-events")
-    public ResponseEntity<?> putLibraryEvent(@RequestBody @Valid BookStoreEvent bookStoreEvent) throws JsonProcessingException, ExecutionException, InterruptedException {
-
-        if (bookStoreEvent.getBookStoreEventId() == null) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Eai passa por favor o EventId mano");
-        }
-
-        bookStoreEvent.setBookStoreEventType(BookStoreEventType.UPDATE);
-        bookStoreEventProducer.senBookStoreEvent_Approach2(bookStoreEvent);
-        return ResponseEntity.status(HttpStatus.OK).body(bookStoreEvent);
+    @PutMapping("/v1/bookstore")
+    public ResponseEntity<BookStoreResource> putLibraryEvent(@RequestBody @Valid BookStoreResource bookStoreResource) throws JsonProcessingException {
+        var bookStore = bookStoreBuilder.resourceToEntity(bookStoreResource);
+        var bookStoreUpdate = bookStoreService.update(bookStore);
+        var bookStoreResourceUpdate = bookStoreBuilder.entityToResource(bookStoreUpdate);
+        return ResponseEntity.status(HttpStatus.OK).body(bookStoreResourceUpdate);
     }
 }

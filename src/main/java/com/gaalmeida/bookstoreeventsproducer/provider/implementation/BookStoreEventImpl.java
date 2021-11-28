@@ -1,10 +1,11 @@
-package com.gaalmeida.bookstoreeventsproducer.provider;
+package com.gaalmeida.bookstoreeventsproducer.provider.implementation;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.gaalmeida.bookstoreeventsproducer.domain.BookStore;
 import com.gaalmeida.bookstoreeventsproducer.domain.BookStoreEvent;
 import com.gaalmeida.bookstoreeventsproducer.domain.BookStoreEventType;
+import com.gaalmeida.bookstoreeventsproducer.provider.contract.KafkaProvider;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.kafka.clients.producer.ProducerRecord;
 import org.apache.kafka.common.header.Header;
