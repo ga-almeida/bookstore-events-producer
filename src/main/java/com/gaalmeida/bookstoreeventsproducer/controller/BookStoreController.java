@@ -2,7 +2,7 @@ package com.gaalmeida.bookstoreeventsproducer.controller;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.gaalmeida.bookstoreeventsproducer.builder.BookStoreBuilder;
-import com.gaalmeida.bookstoreeventsproducer.resource.BookStoreResource;
+import com.gaalmeida.bookstoreeventsproducer.controller.resource.BookStoreResource;
 import com.gaalmeida.bookstoreeventsproducer.service.contract.BookStoreService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

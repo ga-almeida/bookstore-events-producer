@@ -1,7 +1,7 @@
 package com.gaalmeida.bookstoreeventsproducer.builder;
 
 import com.gaalmeida.bookstoreeventsproducer.domain.BookStore;
-import com.gaalmeida.bookstoreeventsproducer.resource.BookStoreResource;
+import com.gaalmeida.bookstoreeventsproducer.controller.resource.BookStoreResource;
 
 public class BookStoreBuilder {
 

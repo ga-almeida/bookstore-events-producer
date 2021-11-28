@@ -1,4 +1,4 @@
-package com.gaalmeida.bookstoreeventsproducer.resource;
+package com.gaalmeida.bookstoreeventsproducer.controller.resource;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
